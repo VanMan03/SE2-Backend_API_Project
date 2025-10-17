@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "76b17d8b-8808-4211-a14e-d31017c0d0e2",
+		"name": "SE2 - Library Management (CRUD)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49116022",
+		"_collection_link": "https://ivanregalario3-2877664.postman.co/workspace/Ivan-Regalario's-Workspace~dafdfcba-a052-4ed9-80fb-d8f7e90d71e9/collection/49116022-76b17d8b-8808-4211-a14e-d31017c0d0e2?action=share&source=collection_link&creator=49116022"
+	},
+	"item": [
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/members",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/members/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"members",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/members",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update member",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/members/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"members",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete member",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/members/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"members",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/books",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/books/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/books",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/books/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/books/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loans",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/loans",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/loans/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"loans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add loan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/loans",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update loan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/loans/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"loans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete loan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://se2-backend-api-project.onrender.com/api/loans/:id",
+							"protocol": "https",
+							"host": [
+								"se2-backend-api-project",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"loans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
