@@ -12,9 +12,13 @@ connectDB();
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/api', memberRoutes);
-app.use('/api', bookRoutes);
-app.use('/api', loanRoutes);
+app.get('/', (req, res) => {
+  res.send('📚 Library Management API is running...');
+});
+
+app.use('/api/members', memberRoutes);
+app.use('/api/books', bookRoutes);
+app.use('/api/loans', loanRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
