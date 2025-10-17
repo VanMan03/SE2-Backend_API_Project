@@ -30,11 +30,11 @@ Content-Type: application/json<br>
   "type": "Single",<br>
   "price": 1500,<br>
   "status": "available"<br>
-}<br><br>
+}<br><br><br>
 
 Environmental Varaibales Used (.env keys):<br>
 PORT=3000<br>
-MONGO_URI=mongodb+srv://ivan_reg:ivanreg-123@cluster0.6qi7wdh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0<br>
+MONGO_URI=mongodb+srv://ivan_reg:ivanreg-123@cluster0.6qi7wdh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0<br><br><br>
 Group 2 - Library Management CRUD<br>
 Name: Ivan Teofilo N. Regalario<br>
 Course/Block/Year: BSCS 4-1
