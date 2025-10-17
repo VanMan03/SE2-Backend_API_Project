@@ -21,17 +21,17 @@ Base URL: https://se2-backend-api-project.onrender.com
 | PUT    | /api/loans/:id         | Update an existing loan by ID            |
 | DELETE | /api/loans/:id         | Delete a loan by ID                       |
 
-Sample Request: 
-POST /api/rooms
-Content-Type: application/json
+<br><br>Sample Request: <br>
+POST /api/rooms <br>
+Content-Type: application/json<br>
 
-{
-  "number": 101,
-  "type": "Single",
-  "price": 1500,
-  "status": "available"
-}
+{<br>
+  "number": 101,<br>
+  "type": "Single",<br>
+  "price": 1500,<br>
+  "status": "available"<br>
+}<br><br>
 
-Group 2 - Library Management CRUD
-Name: Ivan Teofilo N. Regalario
+Group 2 - Library Management CRUD<br>
+Name: Ivan Teofilo N. Regalario<br>
 Course/Block/Year: BSCS 4-1
