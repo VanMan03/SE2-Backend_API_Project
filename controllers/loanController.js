@@ -1,6 +1,7 @@
+const mongoose = require('mongoose');
 const Loan = require('../models/loanModels');
-const Member = require('../models/memberModels');
 const Book = require('../models/bookModels');
+const Member = require('../models/memberModels'); // if needed
 
 // Get all loans
 exports.getLoans = async (req, res) => {
@@ -27,47 +28,99 @@ exports.getLoan = async (req, res) => {
   }
 };
 
-// Create a loan
+// Create loan (decrement book.copies)
 exports.createLoan = async (req, res) => {
+  const { memberId, bookId, loanedAt, dueAt } = req.body;
+  if (!memberId || !bookId || !loanedAt || !dueAt) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const session = await mongoose.startSession();
+  session.startTransaction();
   try {
-    const { memberId, bookId, dueAt } = req.body;
+    const book = await Book.findById(bookId).session(session);
+    if (!book) {
+      await session.abortTransaction();
+      return res.status(404).json({ error: 'Book not found' });
+    }
+    if ((book.copies || 0) <= 0) {
+      await session.abortTransaction();
+      return res.status(400).json({ error: 'No copies available' });
+    }
 
-    // Checks if member exists
-    const member = await Member.findById(memberId);
-    if (!member) return res.status(404).json({ error: 'Member not found' });
+    const loan = await Loan.create([{
+      memberId, bookId, loanedAt, dueAt
+    }], { session });
 
-    // Checks if book exists
-    const book = await Book.findById(bookId);
-    if (!book) return res.status(404).json({ error: 'Book not found' });
+    // decrement copies
+    book.copies = (book.copies || 0) - 1;
+    await book.save({ session });
 
-    // Check if book copies are available
-    if (book.copies < 1) return res.status(400).json({ error: 'No copies available' });
+    await session.commitTransaction();
+    session.endSession();
 
-    // Create loan
-    const newLoan = await Loan.create({ memberId, bookId, dueAt });
-    
-    
-    book.copies -= 1;
-    await book.save();
-
-    res.status(201).json(newLoan);
+    const populated = await Loan.findById(loan[0]._id).populate('memberId').populate('bookId');
+    return res.status(201).json(populated);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    await session.abortTransaction();
+    session.endSession();
+    console.error('createLoan error:', err);
+    return res.status(500).json({ error: err.message || 'Server error' });
   }
 };
 
-// Update a loan 
+// Update loan (used for marking returned via PATCH /api/loans/:id)
 exports.updateLoan = async (req, res) => {
+  const { id } = req.params;
+  const { returnedAt, ...rest } = req.body;
+
+  const session = await mongoose.startSession();
+  session.startTransaction();
   try {
-    const updatedLoan = await Loan.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!updatedLoan) return res.status(404).json({ error: 'Loan not found' });
-    res.json(updatedLoan);
+    const loan = await Loan.findById(id).session(session);
+    if (!loan) {
+      await session.abortTransaction();
+      return res.status(404).json({ error: 'Loan not found' });
+    }
+
+    // If marking returned
+    if (returnedAt) {
+      if (loan.returnedAt) {
+        await session.abortTransaction();
+        return res.status(400).json({ error: 'Loan already returned' });
+      }
+
+      loan.returnedAt = returnedAt;
+      await loan.save({ session });
+
+      // increment book copies
+      const book = await Book.findById(loan.bookId).session(session);
+      if (book) {
+        book.copies = (book.copies || 0) + 1;
+        await book.save({ session });
+      }
+
+      await session.commitTransaction();
+      session.endSession();
+
+      const updated = await Loan.findById(id).populate('memberId').populate('bookId');
+      return res.json(updated);
+    }
+
+    // generic partial update (not changing copies)
+    Object.assign(loan, rest);
+    await loan.save({ session });
+
+    await session.commitTransaction();
+    session.endSession();
+
+    const updated = await Loan.findById(id).populate('memberId').populate('bookId');
+    return res.json(updated);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    await session.abortTransaction();
+    session.endSession();
+    console.error('updateLoan error:', err);
+    return res.status(500).json({ error: err.message || 'Server error' });
   }
 };
 
