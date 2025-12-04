@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const cors = require('cors'); // add
 
 const memberRoutes = require('./routes/memberRoutes');
 const bookRoutes = require('./routes/bookRoutes');
@@ -10,6 +11,7 @@ const loanRoutes = require('./routes/loanRoutes');
 dotenv.config();
 connectDB();
 const app = express();
+app.use(cors()); // enable CORS for frontend
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
