@@ -12,6 +12,7 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(cors()); // enable CORS for frontend
+app.use(express.json());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
